@@ -53,19 +53,21 @@ jobs:
           fi
 
           BRANCH="chore/github-contributions"
-          git checkout -B "$BRANCH"
+          git fetch origin main
+          git checkout -B "$BRANCH" origin/main
+          git add public/data/github-contributions.json
           git commit -m "chore: refresh github contribution calendar"
           git push -u origin "HEAD:$BRANCH" --force
 
-          if gh pr view "$BRANCH" --json number --jq .number >/dev/null 2>&1; then
-            PR=$(gh pr view "$BRANCH" --json number --jq .number)
-          else
-            PR=$(gh pr create \
+          PR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -z "$PR" ]; then
+            PR_URL=$(gh pr create \
               --base main \
               --head "$BRANCH" \
               --title "chore: refresh github contribution calendar" \
               --body "Automated refresh of \`public/data/github-contributions.json\`.")
-            PR=$(echo "$PR" | grep -oE '[0-9]+$')
+            PR=$(echo "$PR_URL" | grep -oE '[0-9]+$')
           fi
 
+          echo "Merging PR #$PR"
           gh pr merge "$PR" --squash --delete-branch
