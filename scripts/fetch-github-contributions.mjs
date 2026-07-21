@@ -9,6 +9,8 @@
  *
  * Exit 0 on success. Exit 1 on hard failure (Actions can soft-fail via
  * continue-on-error if preferred later).
+ *
+ * CI: `.github/workflows/contributions-refresh.yml` (daily cron + path push).
  */
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
