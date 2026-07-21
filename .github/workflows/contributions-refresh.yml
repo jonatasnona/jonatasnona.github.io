@@ -1,59 +1,17 @@
 name: Refresh GitHub contributions
 
 on:
-  schedule:
-    - cron: '0 18 * * *'
-  workflow_dispatch:
-  # Also allow a manual path-based trigger while Actions registry
-  # intermittently omits workflow_dispatch for this file.
   push:
     branches: [main]
     paths:
       - '.github/workflows/contributions-refresh.yml'
       - 'scripts/fetch-github-contributions.mjs'
-
-permissions:
-  contents: write
-  pull-requests: write
-
-concurrency:
-  group: github-contributions
-  cancel-in-progress: false
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - name: Fetch contributions
-        env:
-          GH_CONTRIBUTIONS_GRAPH_TOKEN: ${{ secrets.GH_CONTRIBUTIONS_GRAPH_TOKEN }}
-        run: node scripts/fetch-github-contributions.mjs
-
-      - name: Create pull request
-        id: cpr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: chore: refresh github contribution calendar
-          title: chore: refresh github contribution calendar
-          body: Automated refresh of public/data/github-contributions.json from the GitHub GraphQL contribution calendar.
-          branch: chore/github-contributions
-          delete-branch: true
-
-      - name: Merge pull request
-        if: steps.cpr.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch
+      - run: echo "workflow registered"
