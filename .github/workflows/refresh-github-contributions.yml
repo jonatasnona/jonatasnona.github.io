@@ -1,16 +1,9 @@
-# Refresh public GitHub contribution calendar JSON.
-# Requires repo secret: GH_CONTRIBUTIONS_GRAPH_TOKEN (fine-grained profile read or classic read:user).
-# Cron: daily 18:00 UTC. Manual: Actions → this workflow → Run workflow.
-#
-# main is protected (PR required). Direct push from GITHUB_TOKEN is rejected, so this
-# workflow opens a short-lived PR and merges it (0 required reviews on protect-main).
-
 name: Refresh GitHub contributions
 
 on:
-  schedule:
-    - cron: '0 18 * * *' # daily 18:00 UTC
   workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * *'
 
 permissions:
   contents: write
@@ -48,8 +41,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: chore: refresh github contribution calendar
           title: chore: refresh github contribution calendar
-          body: |
-            Automated refresh of `public/data/github-contributions.json` from the GitHub GraphQL contribution calendar.
+          body: Automated refresh of public/data/github-contributions.json from the GitHub GraphQL contribution calendar.
           branch: chore/github-contributions
           delete-branch: true
 
@@ -57,5 +49,4 @@ jobs:
         if: steps.cpr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch
+        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch
