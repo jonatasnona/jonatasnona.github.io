@@ -1,0 +1,258 @@
+---
+/**
+ * Easter egg: 7 clicks on the Mandril logo opens a resume-preset download menu.
+ * Hidden from casual UI; for phone/tablet access to CLI presets.
+ */
+import type { Locale } from '../site.config';
+import { siteConfig } from '../site.config';
+import { listResumeProfiles } from '../resume';
+import { assetPath } from '../lib/paths';
+import { resumePublicPdfPath } from '../lib/resume-paths';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+
+const copy = {
+	pt: {
+		title: 'Presets de currículo',
+		close: 'Fechar',
+		download: 'Baixar PDF',
+	},
+	en: {
+		title: 'Resume presets',
+		close: 'Close',
+		download: 'Download PDF',
+	},
+	es: {
+		title: 'Presets de currículum',
+		close: 'Cerrar',
+		download: 'Descargar PDF',
+	},
+}[locale];
+
+const presets = listResumeProfiles().map((profile) => ({
+	id: profile.id,
+	label: profile.label[locale],
+	description: profile.description[locale],
+	href: assetPath(resumePublicPdfPath(profile.id, locale)),
+	filename: resumePublicPdfPath(profile.id, locale).split('/').pop() ?? '',
+}));
+---
+
+<button
+	type="button"
+	class="resume-egg-trigger"
+	data-resume-egg-trigger
+	aria-hidden="true"
+	tabindex="-1"
+>
+	<img src={assetPath(siteConfig.brandLogo)} alt="" width="64" height="35" />
+</button>
+
+<dialog class="resume-egg" data-resume-egg>
+	<div class="resume-egg__panel">
+		<header class="resume-egg__head">
+			<p class="resume-egg__title">{copy.title}</p>
+			<button type="button" class="resume-egg__close" data-resume-egg-close>
+				{copy.close}
+			</button>
+		</header>
+		<ul class="resume-egg__list">
+			{
+				presets.map((preset) => (
+					<li>
+						<a
+							class="resume-egg__link"
+							href={preset.href}
+							download={preset.filename}
+							data-resume-egg-item={preset.id}
+						>
+							<span class="resume-egg__label">{preset.label}</span>
+							<span class="resume-egg__id">{preset.id}</span>
+							<span class="resume-egg__desc">{preset.description}</span>
+							<span class="resume-egg__action">{copy.download}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</dialog>
+
+<script>
+	const NEED = 7;
+	const RESET_MS = 2800;
+
+	const trigger = document.querySelector('[data-resume-egg-trigger]');
+	const dialog = document.querySelector('[data-resume-egg]');
+	const closeBtn = document.querySelector('[data-resume-egg-close]');
+
+	if (trigger instanceof HTMLElement && dialog instanceof HTMLDialogElement) {
+		let clicks = 0;
+		let resetTimer = 0;
+
+		const open = () => {
+			dialog.showModal();
+		};
+
+		const close = () => {
+			dialog.close();
+		};
+
+		trigger.addEventListener('click', () => {
+			clicks += 1;
+			window.clearTimeout(resetTimer);
+			resetTimer = window.setTimeout(() => {
+				clicks = 0;
+			}, RESET_MS);
+			if (clicks >= NEED) {
+				clicks = 0;
+				window.clearTimeout(resetTimer);
+				open();
+			}
+		});
+
+		closeBtn?.addEventListener('click', close);
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) close();
+		});
+	}
+</script>
+
+<style>
+	.resume-egg-trigger {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: default;
+		line-height: 0;
+	}
+
+	.resume-egg-trigger img {
+		display: block;
+		width: 64px;
+		height: auto;
+	}
+
+	.resume-egg {
+		margin: auto;
+		padding: 0;
+		border: 1px solid rgba(119, 33, 111, 0.45);
+		background: transparent;
+		max-width: min(26rem, calc(100vw - 1.5rem));
+		width: 100%;
+	}
+
+	.resume-egg::backdrop {
+		background: rgba(20, 16, 24, 0.45);
+	}
+
+	.resume-egg__panel {
+		background: rgba(255, 253, 251, 0.97);
+		box-shadow: 6px 6px 0 rgba(119, 33, 111, 0.12);
+		max-height: min(70vh, 32rem);
+		overflow: auto;
+	}
+
+	.resume-egg__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.75rem 0.9rem;
+		border-bottom: 1px dashed rgba(119, 33, 111, 0.35);
+		position: sticky;
+		top: 0;
+		background: rgba(255, 253, 251, 0.98);
+		z-index: 1;
+	}
+
+	.resume-egg__title {
+		margin: 0;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-accent-deep);
+	}
+
+	.resume-egg__close {
+		font-family: ui-monospace, Menlo, Consolas, monospace;
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: var(--color-muted);
+		background: transparent;
+		border: 1px solid rgba(119, 33, 111, 0.3);
+		padding: 0.25rem 0.45rem;
+		cursor: pointer;
+	}
+
+	.resume-egg__list {
+		list-style: none;
+		margin: 0;
+		padding: 0.35rem 0;
+	}
+
+	.resume-egg__link {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			'label action'
+			'id action'
+			'desc desc';
+		gap: 0.1rem 0.75rem;
+		padding: 0.65rem 0.9rem;
+		text-decoration: none;
+		color: inherit;
+		border-top: 1px dashed rgba(119, 33, 111, 0.18);
+	}
+
+	.resume-egg__list li:first-child .resume-egg__link {
+		border-top: 0;
+	}
+
+	.resume-egg__link:hover,
+	.resume-egg__link:focus-visible {
+		background: rgba(119, 33, 111, 0.06);
+		outline: none;
+	}
+
+	.resume-egg__label {
+		grid-area: label;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 0.95rem;
+		color: var(--color-brand);
+	}
+
+	.resume-egg__id {
+		grid-area: id;
+		font-family: ui-monospace, Menlo, Consolas, monospace;
+		font-size: 0.68rem;
+		color: var(--color-muted);
+	}
+
+	.resume-egg__desc {
+		grid-area: desc;
+		font-size: 0.78rem;
+		line-height: 1.35;
+		color: var(--color-ink-soft);
+		margin-top: 0.15rem;
+	}
+
+	.resume-egg__action {
+		grid-area: action;
+		align-self: center;
+		font-family: ui-monospace, Menlo, Consolas, monospace;
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: var(--color-accent-deep);
+		white-space: nowrap;
+	}
+</style>

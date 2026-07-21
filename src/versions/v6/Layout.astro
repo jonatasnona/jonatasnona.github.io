@@ -3,8 +3,8 @@
 import type { Locale } from '../../site.config';
 import type { PortfolioContent } from '../../content/types';
 import type { VersionId } from '../registry';
-import { assetPath, localeHomePath, previewPath } from '../../lib/paths';
-import { locales, siteConfig } from '../../site.config';
+import { localeHomePath, previewPath } from '../../lib/paths';
+import { locales } from '../../site.config';
 import '../../styles/tokens.css';
 import '../../styles/typography.css';
 import SiteHead from '../../components/SiteHead.astro';
@@ -12,6 +12,7 @@ import DevTools from '../../components/DevTools.astro';
 import ContactLinks from '../../components/ContactLinks.astro';
 import ContributionGraph from '../../components/ContributionGraph.astro';
 import ExperienceExpandable from '../../components/ExperienceExpandable.astro';
+import ResumePresetEgg from '../../components/ResumePresetEgg.astro';
 
 type Props = { locale: Locale; content: PortfolioContent; versionId: VersionId; isPreview?: boolean };
 const { locale, content, versionId, isPreview = false } = Astro.props;
@@ -32,7 +33,7 @@ const langHref = (l: Locale) => (isPreview ? previewPath(versionId, l) : localeH
 				</div>
 			</header>
 			<div class="hero">
-				<img src={assetPath(siteConfig.brandLogo)} alt="" width="64" height="35" />
+				<ResumePresetEgg locale={locale} />
 				<p class="mono label">{content.wire.role}</p>
 				<p class="role">{content.hero.headline}</p>
 				<p class="mono label">{content.wire.name}</p>
