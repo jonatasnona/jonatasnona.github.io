@@ -95,7 +95,7 @@ export const en: PortfolioContent = {
 				highlights: [
 					'SRE on online payment systems focused on availability and scale',
 					'Architecture and infrastructure evolution for distributed applications',
-					'Elasticsearch cluster design and operations with squad support',
+					'Elasticsearch cluster design and operations with squad support: redesigned the read-layer cluster (dedicated nodes per workload, following Elastic best practices), cutting read-layer incidents by ~85%',
 					'Automated provisioning and delivery with Terraform, Packer, Ansible, and Docker on AWS',
 				],
 				technologies: [
@@ -121,7 +121,7 @@ export const en: PortfolioContent = {
 				highlights: [
 					'System integration for telecom operators across heterogeneous environments',
 					'Third-party IoT integrations and ETL pipelines (Greenplum, MySQL)',
-					'Automated Linux environments with Ansible and Shell Script',
+					'Automated server and Nokia-solution provisioning in the datacenter with Packer, SSH, and Ansible/Shell: cut the cycle from ~168 h (~7 days) to ~48 h (~2 days)',
 				],
 				technologies: [
 					'Ansible',
@@ -144,6 +144,7 @@ export const en: PortfolioContent = {
 				highlights: [
 					'Backend services and APIs for live and on-demand video delivery',
 					'Focused on performance, scale, and resilience in microservices',
+					'Built AI agents to detect video transmission failures; ~35% of open tickets were of that type, and with the agents we brought that share down to nearly zero',
 					'Improved CI/CD pipelines with the DevOps team',
 				],
 				technologies: [

@@ -95,7 +95,7 @@ export const pt: PortfolioContent = {
 				highlights: [
 					'SRE em sistemas de pagamentos online com foco em disponibilidade e escala',
 					'Arquitetura e evolução de infraestrutura para aplicações distribuídas',
-					'Operação e desenho de clusters Elasticsearch com apoio a squads',
+					'Operação e desenho de clusters Elasticsearch com apoio a squads: reformulei o cluster da camada de leitura (nós dedicados por operação, alinhados às práticas da Elastic), reduzindo incidentes nessa camada em ~85%',
 					'Automação de provisionamento e entrega com Terraform, Packer, Ansible e Docker na AWS',
 				],
 				technologies: [
@@ -121,7 +121,7 @@ export const pt: PortfolioContent = {
 				highlights: [
 					'Integração de sistemas para operadoras de telecom em ambientes heterogêneos',
 					'Integrações IoT com terceiros e pipelines ETL (Greenplum, MySQL)',
-					'Automação de ambientes Linux com Ansible e Shell Script',
+					'Automação do provisionamento de servidores e soluções Nokia no datacenter com Packer, SSH e Ansible/Shell: reduzi o ciclo de ~168 h (~7 dias) para ~48 h (~2 dias)',
 				],
 				technologies: [
 					'Ansible',
@@ -144,6 +144,7 @@ export const pt: PortfolioContent = {
 				highlights: [
 					'Serviços backend e APIs para entrega de vídeo ao vivo e sob demanda',
 					'Foco em performance, escala e resiliência em microserviços',
+					'Criei agentes de IA para detectar falhas de transmissão na plataforma de vídeo; ~35% dos tickets abertos eram desse tipo e, com os agentes, reduzimos essa parcela para quase zero',
 					'Melhoria de pipelines CI/CD com o time de DevOps',
 				],
 				technologies: [
