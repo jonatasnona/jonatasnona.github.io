@@ -34,10 +34,11 @@ Layouts load via `import.meta.glob` in `src/versions/registry.ts`.
 ## Assets
 
 - Mandril logo (transparent PNG, Ubuntu poly-art): `public/brand/mandril-logo.png`
-- Resume PDFs (generated at build): `public/resume/resume_jonatas_pedraza_{pt,en,es}.pdf`
+- Resume PDFs (generated at build): `public/resume/resume_jonatas_pedraza_{pt,en,es}.pdf` (brand) and `…_ats_{locale}.pdf` (recruiter `default`)
 - Printable HTML source: `/resume/{pt,en,es}/` → Playwright → PDF (`scripts/generate-resumes.mjs`)
+- Recruiter presets + on-demand PDF: `src/resume/`, `/resume/recruiter/<profile>/<locale>/`, `npm run resume` — see `docs/resume-profiles.md`
 - Public paths go through `src/lib/paths.ts` (`withBase`) because of `base: '/'`
-- `siteConfig.resumePath` is per-locale; `ContactLinks` receives `locale`
+- `siteConfig.resumePath` / `resumeAtsPath` are per-locale; `ContactLinks` receives `locale`
 ## Design / UI
 
 Interface role and guidelines: `docs/design.md`.  

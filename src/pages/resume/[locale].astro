@@ -79,7 +79,17 @@ const location = siteConfig.location[locale];
 									{item.period} · {item.location}
 								</p>
 							</div>
-							<p class="resume-summary">{item.summary}</p>
+							{
+								item.highlights.length > 0 ? (
+									<ul class="resume-highlights">
+										{item.highlights.map((line) => (
+											<li>{line}</li>
+										))}
+									</ul>
+								) : (
+									<p class="resume-summary">{item.summary}</p>
+								)
+							}
 							{
 								item.technologies.length > 0 && (
 									<p class="resume-tech">{item.technologies.join(' · ')}</p>
@@ -264,6 +274,18 @@ const location = siteConfig.location[locale];
 		color: var(--color-ink-soft);
 		font-size: 0.86rem;
 		line-height: 1.4;
+	}
+
+	.resume-highlights {
+		margin: 0.3rem 0 0;
+		padding: 0 0 0 1rem;
+		color: var(--color-ink-soft);
+		font-size: 0.82rem;
+		line-height: 1.35;
+	}
+
+	.resume-highlights li + li {
+		margin-top: 0.2rem;
 	}
 
 	.resume-tech {

@@ -4,7 +4,7 @@ export const es: PortfolioContent = {
 	meta: {
 		title: 'Jonatas Pedraza — Ingeniero de Software',
 		description:
-			'Ingeniero de Software enfocado en backend, arquitectura, cloud y DevOps. Experiencia en crédito, pagos, delivery, telecom y video.',
+			'Ingeniero de Software (Node.js, TypeScript, React, AWS): backend, frontend, arquitectura y DevOps. Crédito, pagos, delivery, telecom y video.',
 	},
 	nav: {
 		about: 'Sobre mí',
@@ -12,6 +12,7 @@ export const es: PortfolioContent = {
 		skills: 'Competencias',
 		contact: 'Contacto',
 		resume: 'Currículum',
+		resumeAts: 'CV ATS',
 		versionPreview: 'Versiones de layout',
 	},
 	hero: {
@@ -25,6 +26,8 @@ export const es: PortfolioContent = {
 	about: {
 		title: 'Sobre mí',
 		body: 'Ingeniero de Software con trayectoria en backend, arquitectura y DevOps, construyendo plataformas que deben escalar con confiabilidad — crédito, pagos, delivery, telecom, video y productos orientados a datos. Trabajo de punta a punta: desde entender el problema y diseñar la solución hasta la implementación, observabilidad y soporte en producción. Perfil generalista con criterio: elijo la herramienta adecuada para el desafío, priorizo una arquitectura sostenible y colaboro de cerca con producto, diseño y operaciones. Uso herramientas de IA generativa como apalancamiento en el día a día — para acelerar exploración y entrega — sin soltar la responsabilidad sobre trade-offs, calidad y lo que realmente llega a producción.',
+		recruiter:
+			'Ingeniero de Software con más de 10 años de experiencia en backend, arquitectura, cloud y DevOps — y trabajo reciente también en frontend (React/TypeScript). Experiencia en plataformas de crédito, pagos, food delivery, telecom y video. Stack principal: Node.js, TypeScript, NestJS, Python, Go, PostgreSQL, Redis, Elasticsearch, AWS, Docker, Terraform y Datadog. Perfil hands-on de punta a punta: APIs, microservicios, observabilidad y entrega con producto y diseño.',
 	},
 	experience: {
 		title: 'Experiencia',
@@ -37,6 +40,13 @@ export const es: PortfolioContent = {
 				location: 'São Paulo, Brasil',
 				summary:
 					'En Nuvemshop evoluciono la plataforma de crédito — desde la oferta y la gestión hasta las operaciones del día a día. El trabajo abarca backend y frontend: construyo funcionalidades escalables y confiables, integro APIs de socios para el motor de crédito (comunicación entre sistemas, intercambio de datos y automatización de análisis y aprobación) y desarrollo el frontend de crédito con React, TypeScript, Figma y Playwright, junto a diseño. En un squad reducido con producto, diseño y operaciones, también entrego herramientas internas de backoffice que mejoran procesos y aceleran valor. Cuando algo falla en producción, investigo con Datadog (métricas, logs y causa raíz) y uso herramientas de IA generativa como apalancamiento en el flujo de desarrollo — sin soltar la responsabilidad sobre calidad y lo que llega al usuario.',
+				highlights: [
+					'Evolución de la plataforma de crédito (oferta, gestión y operaciones) en backend y frontend',
+					'Integración de APIs de socios en el motor de crédito (análisis y aprobación)',
+					'Frontend de crédito con React, TypeScript, Figma y Playwright',
+					'Herramientas de backoffice para un squad reducido (producto, diseño y operaciones)',
+					'Investigación de incidentes en producción con Datadog (métricas, logs, causa raíz)',
+				],
 				technologies: [
 					'TypeScript',
 					'Node.js',
@@ -57,6 +67,12 @@ export const es: PortfolioContent = {
 				location: 'Santa Catarina, Brasil',
 				summary:
 					'Como arquitecto diseñé e implementé soluciones de food delivery como microservicios en AWS, con atención constante a escala, rendimiento, seguridad y mantenibilidad. Una parte central del rol era traducir el negocio en decisiones técnicas: entrevistas, refinamientos y alineaciones con stakeholders, produciendo especificaciones claras para el equipo. Apoyé a tech leads con estándares de código, documentación (diagramas y guías), integración continua y prácticas ágiles. En momentos críticos entré hands-on en squads con legado e integraciones complejas, ayudando a desbloquear entregas de alta prioridad sin perder el hilo de la arquitectura.',
+				highlights: [
+					'Arquitectura e implementación de food delivery en microservicios en AWS',
+					'Traducción de requisitos de negocio en specs y decisiones técnicas con stakeholders',
+					'Apoyo a tech leads: estándares de código, documentación, CI y prácticas ágiles',
+					'Hands-on en squads críticos con legado e integraciones complejas',
+				],
 				technologies: [
 					'NestJS',
 					'Node.js',
@@ -76,6 +92,12 @@ export const es: PortfolioContent = {
 				location: 'São Paulo, Brasil',
 				summary:
 					'En el equipo de SRE de Pagar.me trabajé en sistemas de pagos online bajo presión real de disponibilidad y escala. El día a día mezclaba arquitectura, desarrollo y evolución de infraestructura para aplicaciones distribuidas — incluyendo apoyo a squads en el diseño y la operación de clusters Elasticsearch. Automatizé el aprovisionamiento y la entrega con Terraform, Packer, Ansible y Docker sobre AWS, siempre con el mismo norte: rendimiento, confiabilidad y capacidad de crecer sin sorpresas en producción.',
+				highlights: [
+					'SRE en sistemas de pagos online con foco en disponibilidad y escala',
+					'Arquitectura y evolución de infraestructura para aplicaciones distribuidas',
+					'Diseño y operación de clusters Elasticsearch con apoyo a squads',
+					'Automatización de aprovisionamiento y entrega con Terraform, Packer, Ansible y Docker en AWS',
+				],
 				technologies: [
 					'Python',
 					'JavaScript',
@@ -96,6 +118,11 @@ export const es: PortfolioContent = {
 				location: 'Río de Janeiro, Brasil',
 				summary:
 					'En Nokia integré sistemas para operadoras de telecom: desarrollar, aprovisionar, orquestar y configurar soluciones que debían conversar con entornos heterogéneos. Participé en integraciones IoT con terceros y en pipelines ETL con Greenplum y MySQL, conectando fuentes de datos a flujos operativos. Para reducir trabajo manual y riesgo, automatizé entornos Linux con Ansible y Shell Script, aplicando prácticas de cloud, Git, Elasticsearch y patrones de diseño pensados para escala y mantenibilidad.',
+				highlights: [
+					'Integración de sistemas para operadoras de telecom en entornos heterogéneos',
+					'Integraciones IoT con terceros y pipelines ETL (Greenplum, MySQL)',
+					'Automatización de entornos Linux con Ansible y Shell Script',
+				],
 				technologies: [
 					'Ansible',
 					'Shell Script',
@@ -114,6 +141,11 @@ export const es: PortfolioContent = {
 				location: 'Río de Janeiro, Brasil',
 				summary:
 					'En la plataforma de video de Globo.com construí y mantuve servicios backend y APIs para entrega en vivo y bajo demanda, con foco en rendimiento, escala y resiliencia — donde latencia y estabilidad importan de verdad. También contribuí con el equipo de DevOps en la automatización y la eficiencia de los pipelines de CI/CD, acortando el camino del código a producción. El trabajo transitaba por microservicios y sistemas distribuidos, con stack de datos, caché y balanceo (PostgreSQL, MongoDB, Redis, Elasticsearch, Nginx) sobre Python, Node.js y Docker.',
+				highlights: [
+					'Servicios backend y APIs para entrega de video en vivo y bajo demanda',
+					'Foco en rendimiento, escala y resiliencia en microservicios',
+					'Mejora de pipelines CI/CD con el equipo de DevOps',
+				],
 				technologies: [
 					'Python',
 					'Node.js',
@@ -134,6 +166,11 @@ export const es: PortfolioContent = {
 				location: 'Manaus, Brasil',
 				summary:
 					'En Neemu trabajé en el equipo de Big Data desarrollando servicios de adquisición de datos para sistemas escalables y distribuidos — bases que deben absorber volumen sin perder confiabilidad. También me sumé a DevOps, automatizando rutinas, mejorando pipelines de continuous delivery/deployment y operando recursos en AWS. El día a día mezclaba Node.js y JavaScript con MySQL, PostgreSQL, MongoDB y Redis, además de Shell Script en Linux, Docker y Git. Apliqué microservicios, patrones de diseño y prácticas de cloud para mantener rendimiento, escala y mantenibilidad en el centro de las decisiones.',
+				highlights: [
+					'Servicios de adquisición de datos para sistemas distribuidos de Big Data',
+					'Automatización y pipelines de continuous delivery/deployment en AWS',
+					'Stack Node.js con MySQL, PostgreSQL, MongoDB y Redis',
+				],
 				technologies: [
 					'Node.js',
 					'JavaScript',
@@ -154,6 +191,11 @@ export const es: PortfolioContent = {
 				location: 'Manaus, Brasil',
 				summary:
 					'En el INdT (Instituto Nokia de Tecnología) formé parte del equipo de Cloud & Backend, desarrollando servicios backend y aplicaciones mobile. Construí APIs REST escalables integradas a MySQL, usando Node.js, JavaScript, Java y C++ según el problema. Los entornos de desarrollo y producción corrían en Linux, con fuerte uso de Shell Script para automatización. Los proyectos exigían colaboración cercana con otros equipos, prácticas ágiles con Scrum y mejora continua de arquitectura y procesos — con Git y design patterns sosteniendo la mantenibilidad del código.',
+				highlights: [
+					'APIs REST escalables y servicios backend en el equipo de Cloud & Backend',
+					'Aplicaciones mobile e integración con MySQL',
+					'Automatización en Linux con Shell Script y prácticas ágiles (Scrum)',
+				],
 				technologies: [
 					'Node.js',
 					'JavaScript',
@@ -182,6 +224,10 @@ export const es: PortfolioContent = {
 					'REST',
 					'Microservicios',
 				],
+			},
+			{
+				title: 'Frontend',
+				items: ['React', 'TypeScript', 'Playwright', 'Figma'],
 			},
 			{
 				title: 'Arquitectura',

@@ -1,0 +1,335 @@
+---
+/**
+ * Printable A4 recruiter / ATS resume — profile-framed content.
+ * Source for on-demand Playwright PDF via `npm run resume`.
+ */
+import { getContent } from '../../../../content';
+import { locales, siteConfig, type Locale } from '../../../../site.config';
+import {
+	assembleResume,
+	listResumeProfiles,
+	requireResumeProfile,
+	type ResumeProfile,
+} from '../../../../resume';
+import type { Experience, SkillGroup } from '../../../../content/types';
+import '../../../../styles/tokens.css';
+import '../../../../styles/typography.css';
+import '../../../../styles/palettes.css';
+
+export function getStaticPaths() {
+	const profiles = listResumeProfiles().filter((p: ResumeProfile) => p.mode === 'recruiter');
+	return profiles.flatMap((profile: ResumeProfile) =>
+		locales.map((locale: Locale) => ({
+			params: { profile: profile.id, locale },
+		})),
+	);
+}
+
+const { profile: profileParam, locale: localeParam } = Astro.params;
+const locale = (locales.includes(localeParam as Locale) ? localeParam : 'pt') as Locale;
+const profile = requireResumeProfile(profileParam ?? 'default');
+const content = getContent(locale);
+const resume = assembleResume(content, profile, locale);
+const location = siteConfig.location[locale];
+const skillsHeading = content.skills.title;
+const experienceHeading = content.experience.title;
+const aboutHeading = content.about.title;
+const keywordsHeading =
+	locale === 'pt' ? 'Palavras-chave' : locale === 'es' ? 'Palabras clave' : 'Keywords';
+---
+
+<!doctype html>
+<html lang={locale} data-fonts="outfit" data-palette="ocean">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<title
+			>{siteConfig.name} — {resume.title} ({profile.id} / {locale})</title
+		>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Outfit:wght@500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<article class="resume" data-resume data-mode="recruiter" data-profile={profile.id}>
+			<header class="resume-hero">
+				<p class="resume-role">{resume.title}</p>
+				<h1 class="resume-name">{resume.name}</h1>
+				<p class="resume-tag">{resume.tagline}</p>
+				<ul class="resume-contact">
+					<li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+					<li><a href={siteConfig.linkedin}>LinkedIn</a></li>
+					<li><a href={siteConfig.github}>GitHub</a></li>
+					<li>{location}</li>
+				</ul>
+			</header>
+
+			<section class="resume-section resume-section--avoid-break">
+				<h2>{aboutHeading}</h2>
+				<p class="resume-body">{resume.about}</p>
+			</section>
+
+			{
+				resume.prioritySkills.length > 0 && (
+					<section class="resume-section resume-section--avoid-break">
+						<h2>{skillsHeading}</h2>
+						<p class="resume-skills-flat">{resume.prioritySkills.join(' · ')}</p>
+						{
+							resume.skills.map((g: SkillGroup) => (
+								<p class="resume-skills-group">
+									<strong>{g.title}</strong>
+									<span> — {g.items.join(', ')}</span>
+								</p>
+							))
+						}
+					</section>
+				)
+			}
+
+			<section class="resume-section">
+				<h2>{experienceHeading}</h2>
+				{
+					resume.experience.map((item: Experience) => (
+						<article class="resume-job">
+							<div class="resume-job-head">
+								<h3>
+									{item.role}
+									<span class="resume-at">
+										{' — '}
+										{item.company}
+									</span>
+								</h3>
+								<p class="resume-meta">
+									{item.period} · {item.location}
+								</p>
+							</div>
+							{
+								item.highlights.length > 0 ? (
+									<ul class="resume-highlights">
+										{item.highlights.map((line: string) => (
+											<li>{line}</li>
+										))}
+									</ul>
+								) : (
+									<p class="resume-summary">{item.summary}</p>
+								)
+							}
+							{
+								item.technologies.length > 0 && (
+									<p class="resume-tech">{item.technologies.join(' · ')}</p>
+								)
+							}
+						</article>
+					))
+				}
+			</section>
+
+			{
+				resume.extraKeywords.length > 0 && (
+					<section class="resume-section resume-section--avoid-break">
+						<h2>{keywordsHeading}</h2>
+						<p class="resume-keywords">{resume.extraKeywords.join(' · ')}</p>
+					</section>
+				)
+			}
+		</article>
+	</body>
+</html>
+
+<style is:global>
+	@page {
+		size: A4;
+		margin: 12mm 14mm;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		background: #fff;
+		color: #111;
+		font-family: var(--font-body);
+		font-size: 9.2pt;
+		line-height: 1.3;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.resume {
+		max-width: 210mm;
+		margin: 0 auto;
+		padding: 1.1rem 1.35rem 1.75rem;
+	}
+
+	@media print {
+		.resume {
+			max-width: none;
+			padding: 0;
+		}
+	}
+
+	.resume-hero {
+		padding-bottom: 0.55rem;
+		border-bottom: 1.5px solid #222;
+		margin-bottom: 0.65rem;
+	}
+
+	.resume-role {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #222;
+	}
+
+	.resume-name {
+		margin: 0.12rem 0 0;
+		font-family: var(--font-display);
+		font-size: 1.7rem;
+		font-weight: 800;
+		letter-spacing: var(--font-tracking-display);
+		line-height: 1.05;
+		color: #111;
+	}
+
+	.resume-tag {
+		margin: 0.3rem 0 0;
+		color: #333;
+		font-size: 0.88rem;
+		max-width: 38rem;
+	}
+
+	.resume-contact {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.3rem 0.9rem;
+		margin: 0.55rem 0 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.75rem;
+		color: #444;
+	}
+
+	.resume-contact a {
+		color: #111;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.resume-section {
+		margin-top: 0.55rem;
+	}
+
+	.resume-section--avoid-break {
+		break-inside: avoid;
+	}
+
+	.resume-section h2 {
+		margin: 0 0 0.35rem;
+		font-family: var(--font-display);
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #111;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 0.15rem;
+	}
+
+	.resume-body {
+		margin: 0;
+		color: #222;
+		font-size: 0.84rem;
+		text-align: justify;
+	}
+
+	.resume-skills-flat {
+		margin: 0 0 0.35rem;
+		font-size: 0.86rem;
+		font-weight: 600;
+		color: #111;
+	}
+
+	.resume-skills-group {
+		margin: 0.2rem 0 0;
+		font-size: 0.8rem;
+		color: #333;
+	}
+
+	.resume-skills-group strong {
+		color: #111;
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+
+	.resume-job {
+		margin-top: 0.45rem;
+		break-inside: avoid;
+	}
+
+	.resume-job + .resume-job {
+		padding-top: 0.45rem;
+		border-top: 1px solid #e5e5e5;
+	}
+
+	.resume-job-head h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #111;
+	}
+
+	.resume-at {
+		font-weight: 600;
+		color: #333;
+	}
+
+	.resume-meta {
+		margin: 0.1rem 0 0;
+		font-size: 0.72rem;
+		color: #555;
+	}
+
+	.resume-summary {
+		margin: 0.28rem 0 0;
+		color: #222;
+		font-size: 0.8rem;
+		line-height: 1.35;
+		text-align: justify;
+	}
+
+	.resume-highlights {
+		margin: 0.25rem 0 0;
+		padding: 0 0 0 0.95rem;
+		color: #222;
+		font-size: 0.78rem;
+		line-height: 1.32;
+	}
+
+	.resume-highlights li + li {
+		margin-top: 0.15rem;
+	}
+
+	.resume-tech {
+		margin: 0.25rem 0 0;
+		font-size: 0.7rem;
+		color: #555;
+	}
+
+	.resume-keywords {
+		margin: 0;
+		font-size: 0.78rem;
+		color: #333;
+	}
+</style>

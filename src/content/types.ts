@@ -10,8 +10,13 @@ export type Experience = {
 	role: string;
 	period: string;
 	location: string;
-	/** Narrative summary of the role — storytelling, not a bullet dump. */
+	/** Narrative summary of the role — storytelling for the site (and brand context). */
 	summary: string;
+	/**
+	 * Impact-oriented bullets for scannable UI + ATS / recruiter PDFs.
+	 * Prefer outcomes and scope; only include metrics you can stand behind.
+	 */
+	highlights: string[];
 	technologies: string[];
 };
 
@@ -26,6 +31,8 @@ export type PortfolioContent = {
 		skills: string;
 		contact: string;
 		resume: string;
+		/** ATS / recruiter PDF download label */
+		resumeAts: string;
 		versionPreview: string;
 	};
 	hero: {
@@ -37,7 +44,10 @@ export type PortfolioContent = {
 	};
 	about: {
 		title: string;
+		/** Storytelling body for the site and brand resume PDF. */
 		body: string;
+		/** Dense, keyword-rich summary for recruiter / ATS resume PDFs. */
+		recruiter: string;
 	};
 	experience: {
 		title: string;

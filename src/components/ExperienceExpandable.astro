@@ -1,7 +1,7 @@
 ---
 /**
  * Expandable experience timeline for Wire (v6).
- * Always shows period, role, company, location; summary + tech expand on demand.
+ * Always shows period, role, company, location; highlights + summary + tech expand on demand.
  * Inspired by v8 accordion — native <details>, no JS.
  */
 import type { Experience } from '../content/types';
@@ -32,6 +32,15 @@ const { items, openFirst = true } = Astro.props;
 					<span class="exp-where">{item.location}</span>
 				</summary>
 				<div class="exp-body">
+					{
+						item.highlights.length > 0 && (
+							<ul class="exp-highlights">
+								{item.highlights.map((line) => (
+									<li>{line}</li>
+								))}
+							</ul>
+						)
+					}
 					<p class="exp-summary">{item.summary}</p>
 					{
 						item.technologies.length > 0 && (
@@ -130,6 +139,17 @@ const { items, openFirst = true } = Astro.props;
 		animation: exp-in 0.2s ease;
 	}
 
+	.exp-highlights {
+		margin: 0 0 0.75rem;
+		padding: 0 0 0 1.15rem;
+		color: var(--color-ink);
+		line-height: 1.45;
+	}
+
+	.exp-highlights li + li {
+		margin-top: 0.35rem;
+	}
+
 	.exp-summary {
 		margin: 0;
 		color: var(--color-ink-soft);
@@ -137,6 +157,7 @@ const { items, openFirst = true } = Astro.props;
 		text-align: justify;
 		-webkit-hyphens: auto;
 		hyphens: auto;
+		font-size: 0.92em;
 	}
 
 	.exp-tech {

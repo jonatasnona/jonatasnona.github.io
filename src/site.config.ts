@@ -21,6 +21,12 @@ export const siteConfig = {
 		en: '/resume/resume_jonatas_pedraza_en.pdf',
 		es: '/resume/resume_jonatas_pedraza_es.pdf',
 	},
+	/** Default recruiter/ATS PDF (profile `default`) for platform uploads. */
+	resumeAtsPath: {
+		pt: '/resume/resume_jonatas_pedraza_ats_pt.pdf',
+		en: '/resume/resume_jonatas_pedraza_ats_en.pdf',
+		es: '/resume/resume_jonatas_pedraza_ats_es.pdf',
+	},
 	brandLogo: '/brand/mandril-logo.png',
 } as const;
 

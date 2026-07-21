@@ -29,7 +29,9 @@
     "check": "astro check",
     "astro": "astro",
     "fetch:contributions": "node scripts/fetch-github-contributions.mjs",
-    "generate:resumes": "node scripts/generate-resumes.mjs"
+    "generate:resumes": "node scripts/generate-resumes.mjs",
+    "resume": "node scripts/generate-resume.mjs",
+    "resume:list": "node scripts/generate-resume.mjs --list"
   },
   "dependencies": {
     "astro": "^7.1.3"

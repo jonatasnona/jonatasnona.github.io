@@ -25,6 +25,7 @@ Static one-page professional site for **Jonatas Pedraza**, published on GitHub P
 - `docs/development-workflow.md` — Issue → spec (when needed) → PR
 - `docs/github-pages.md` — base path, Actions, URLs
 - `docs/layout-versions.md` — create / promote / revert layout versions
+- `docs/resume-profiles.md` — resume presets (role/stack/ATS framing)
 - `specs/` — Spec Kit (artifacts in English)
   - `specs/001-portfolio-mvp/` — MVP
   - `specs/002-github-contribution-graph/` — contribution heatmap feasibility
@@ -33,6 +34,7 @@ Static one-page professional site for **Jonatas Pedraza**, published on GitHub P
 ## Selective reading
 
 - Copy changes: `src/content/{pt,en,es}.ts`
+- Resume presets (role/stack): `docs/resume-profiles.md`, `src/resume/profiles/`
 - Design / UI / contact / typography / palette: `docs/design.md`, `.cursor/rules/portfolio-ux-frontend.mdc`
 - New layout version: `docs/layout-versions.md`, then `src/versions/<id>/`
 - i18n / routes: `astro.config.mjs`, `src/pages/`, `src/lib/paths.ts`
@@ -46,6 +48,8 @@ Static one-page professional site for **Jonatas Pedraza**, published on GitHub P
 npm run dev
 npm run build
 npm run generate:resumes
+npm run resume -- --profile <id> --locale <pt|en|es>
+npm run resume:list
 npm run preview
 npm run check
 ```
