@@ -25,9 +25,9 @@ export const en: PortfolioContent = {
 	},
 	about: {
 		title: 'About',
-		body: 'Software Engineer with a path across backend, architecture, and DevOps, building platforms that must scale with reliability — credit, payments, delivery, telecom, video, and data-oriented products. I work end to end: from framing the problem and shaping the solution through implementation, observability, and production support. I am a generalist with judgment: choose the right tool for the challenge, keep architecture maintainable, and ship closely with product, design, and operations. I use generative AI tools as day-to-day leverage — to accelerate exploration and delivery — while owning trade-offs, quality, and what actually ships.',
+		body: 'Software Engineer with a path across backend, architecture, and DevOps, building platforms that must scale with reliability — credit, payments, delivery, telecom, video, and data-oriented products. I work end to end: from framing the problem and shaping the solution through implementation, observability, and production support. I am a generalist with judgment: choose the right tool for the challenge, keep architecture maintainable, and ship closely with product, design, and operations. I have experience using tools such as Codex, Claude, and Cursor in the daily engineering loop — with skills, rules, and MCPs to standardize context, speed up exploration, and raise delivery quality. I also plan and implement with Spec Kit and OpenSpec, turning intent into executable specs and cohesive changes, while still owning trade-offs, review, and what actually ships.',
 		recruiter:
-			'Software Engineer with 10+ years of experience across backend, architecture, cloud, and DevOps — plus recent frontend work (React/TypeScript). Experience on credit, payments, food delivery, telecom, and video platforms. Core stack: Node.js, TypeScript, NestJS, Python, Go, PostgreSQL, Redis, Elasticsearch, AWS, Docker, Terraform, and Datadog. Hands-on end to end: APIs, microservices, observability, and delivery with product and design.',
+			'Software Engineer with 10+ years of experience across backend, architecture, cloud, and DevOps — plus recent frontend work (React/TypeScript). Experience on credit, payments, food delivery, telecom, and video platforms. Core stack: Node.js, TypeScript, NestJS, Python, Go, PostgreSQL, Redis, Elasticsearch, AWS, Docker, Terraform, and Datadog. Hands-on end to end: APIs, microservices, observability, and delivery with product and design. Hands-on with AI-assisted development tooling (Codex, Claude, Cursor; skills, rules, MCPs) and Spec Kit / OpenSpec for disciplined planning and delivery.',
 	},
 	experience: {
 		title: 'Experience',
@@ -230,6 +230,10 @@ export const en: PortfolioContent = {
 			{
 				title: 'Frontend',
 				items: ['React', 'TypeScript', 'Playwright', 'Figma'],
+			},
+			{
+				title: 'AI / DX',
+				items: ['Cursor', 'Claude', 'Codex', 'MCP', 'Spec Kit', 'OpenSpec'],
 			},
 			{
 				title: 'Architecture',

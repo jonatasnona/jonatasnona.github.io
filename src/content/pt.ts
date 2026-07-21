@@ -25,9 +25,9 @@ export const pt: PortfolioContent = {
 	},
 	about: {
 		title: 'Sobre',
-		body: 'Engenheiro de Software com trajetória em backend, arquitetura e DevOps, construindo plataformas que precisam escalar com confiabilidade — crédito, pagamentos, delivery, telecom, vídeo e produtos orientados a dados. Atuo de ponta a ponta: do entendimento do problema e do desenho da solução à implementação, observabilidade e sustentação em produção. Perfil generalista com julgamento: escolho a ferramenta certa para o desafio, priorizo arquitetura sustentável e trabalho lado a lado com produto, design e operações. Uso ferramentas de IA generativa como alavancagem no dia a dia — para acelerar exploração e entrega — sem abrir mão da responsabilidade sobre trade-offs, qualidade e o que realmente chega à produção.',
+		body: 'Engenheiro de Software com trajetória em backend, arquitetura e DevOps, construindo plataformas que precisam escalar com confiabilidade — crédito, pagamentos, delivery, telecom, vídeo e produtos orientados a dados. Atuo de ponta a ponta: do entendimento do problema e do desenho da solução à implementação, observabilidade e sustentação em produção. Perfil generalista com julgamento: escolho a ferramenta certa para o desafio, priorizo arquitetura sustentável e trabalho lado a lado com produto, design e operações. Tenho experiência com o uso de ferramentas como Codex, Claude e Cursor no fluxo diário de engenharia — com skills, rules e MCPs para padronizar contexto, acelerar exploração e elevar a qualidade da entrega. Também planejo e implemento com Spec Kit e OpenSpec, transformando intenção em specs executáveis e mudanças coesas, sem abrir mão do julgamento sobre trade-offs, revisão e o que de fato chega à produção.',
 		recruiter:
-			'Engenheiro de Software com 10+ anos de experiência em backend, arquitetura, cloud e DevOps — e atuação recente também em frontend (React/TypeScript). Experiência em plataformas de crédito, pagamentos, food delivery, telecom e vídeo. Stack principal: Node.js, TypeScript, NestJS, Python, Go, PostgreSQL, Redis, Elasticsearch, AWS, Docker, Terraform e Datadog. Perfil hands-on de ponta a ponta: APIs, microserviços, observabilidade e entrega com produto e design.',
+			'Engenheiro de Software com 10+ anos de experiência em backend, arquitetura, cloud e DevOps — e atuação recente também em frontend (React/TypeScript). Experiência em plataformas de crédito, pagamentos, food delivery, telecom e vídeo. Stack principal: Node.js, TypeScript, NestJS, Python, Go, PostgreSQL, Redis, Elasticsearch, AWS, Docker, Terraform e Datadog. Perfil hands-on de ponta a ponta: APIs, microserviços, observabilidade e entrega com produto e design. Experiência prática com ferramentas de IA para desenvolvimento (Codex, Claude, Cursor; skills, rules, MCPs) e com Spec Kit / OpenSpec para planejar e entregar com rigor.',
 	},
 	experience: {
 		title: 'Experiência',
@@ -230,6 +230,10 @@ export const pt: PortfolioContent = {
 			{
 				title: 'Frontend',
 				items: ['React', 'TypeScript', 'Playwright', 'Figma'],
+			},
+			{
+				title: 'AI / DX',
+				items: ['Cursor', 'Claude', 'Codex', 'MCP', 'Spec Kit', 'OpenSpec'],
 			},
 			{
 				title: 'Arquitetura',
