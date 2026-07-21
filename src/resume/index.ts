@@ -12,6 +12,7 @@ export {
 	fullstackNode,
 	fullstackPython,
 	getResumeProfile,
+	infraArchitect,
 	listResumeProfiles,
 	requireResumeProfile,
 	resumeProfiles,

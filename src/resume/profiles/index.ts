@@ -8,6 +8,7 @@ import { defaultProfile } from './default';
 import { frontendReact } from './frontend-react';
 import { fullstackNode } from './fullstack-node';
 import { fullstackPython } from './fullstack-python';
+import { infraArchitect } from './infra-architect';
 import { sreDevops } from './sre-devops';
 import { techLeader } from './tech-leader';
 
@@ -21,6 +22,7 @@ export const resumeProfiles: readonly ResumeProfile[] = [
 	fullstackNode,
 	fullstackPython,
 	architect,
+	infraArchitect,
 	techLeader,
 	frontendReact,
 	sreDevops,
@@ -57,6 +59,7 @@ export {
 	frontendReact,
 	fullstackNode,
 	fullstackPython,
+	infraArchitect,
 	sreDevops,
 	techLeader,
 };

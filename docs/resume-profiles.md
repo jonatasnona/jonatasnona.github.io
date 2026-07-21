@@ -22,6 +22,7 @@ Canonical facts stay in `src/content/{pt,en,es}.ts`. Profiles only select, order
 | `fullstack-node` | recruiter | Full-stack Node/TS + React |
 | `fullstack-python` | recruiter | Full-stack Python + React/TS |
 | `architect` | recruiter | Architect / staff / system design |
+| `infra-architect` | recruiter | Infrastructure / cloud architect (AWS, IaC, DC) |
 | `tech-leader` | recruiter | Tech Lead — mentoring, delivery, direction |
 | `frontend-react` | recruiter | React/TS + design (Nuvemshop) |
 | `sre-devops` | recruiter | SRE / platform / IaC (Pagar.me) |
@@ -42,6 +43,7 @@ src/resume/
     fullstack-node.ts
     fullstack-python.ts
     architect.ts
+    infra-architect.ts
     tech-leader.ts
     frontend-react.ts
     sre-devops.ts
