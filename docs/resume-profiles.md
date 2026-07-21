@@ -71,7 +71,9 @@ For a one-off job: add `profiles/acme-credit.ts` (or similar), generate the PDF,
 
 - Optional: fill in verified metrics in `highlights` when you have numbers you can stand behind
 
-Content split: `about.body` + `experience.summary` (site storytelling) vs `about.recruiter` + `experience.highlights` (ATS / PDFs).
+Content split:
+- Site + **brand PDF**: `about.body` + `experience.summary` + `experience.highlights`
+- **ATS / recruiter PDF**: `about.recruiter` + `experience.highlights` only (no narrative summary); dense flat skills line
 
 ## Site downloads
 

@@ -14,6 +14,8 @@ export type AssembledResume = {
 	skills: SkillGroup[];
 	/** Flat priority skills for a dense recruiter skills line. */
 	prioritySkills: string[];
+	/** Full ATS skills line (priority first, deprioritized omitted). */
+	skillsFlat: string[];
 	extraKeywords: string[];
 };
 
@@ -81,6 +83,26 @@ function buildPrioritySkills(
 	return picked;
 }
 
+/** Dense ATS skills line: emphasize first, then remaining (skip deprioritized). */
+function buildSkillsFlat(
+	groups: SkillGroup[],
+	emphasize: string[],
+	deprioritize: string[],
+): string[] {
+	const ordered = orderSkills(groups, emphasize, deprioritize);
+	const remaining = ordered
+		.flatMap((g) => g.items)
+		.filter((item) => !isDeprioritized(item, deprioritize));
+	const priority = buildPrioritySkills(groups, emphasize);
+	const flat: string[] = [...priority];
+	for (const item of remaining) {
+		if (!flat.some((p) => skillsMatch(p, item))) {
+			flat.push(item);
+		}
+	}
+	return flat;
+}
+
 /**
  * Frame portfolio content for a resume profile (select / order / retitle).
  * Does not invent metrics — narrative still comes from `src/content/`.
@@ -118,6 +140,14 @@ export function assembleResume(
 			profile.mode === 'brand'
 				? []
 				: buildPrioritySkills(content.skills.groups, profile.emphasizeSkills),
+		skillsFlat:
+			profile.mode === 'brand'
+				? []
+				: buildSkillsFlat(
+						content.skills.groups,
+						profile.emphasizeSkills,
+						deprioritize,
+					),
 		extraKeywords: profile.mode === 'brand' ? [] : (profile.extraKeywords ?? []),
 	};
 }

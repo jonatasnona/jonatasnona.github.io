@@ -10,10 +10,11 @@ export type Experience = {
 	role: string;
 	period: string;
 	location: string;
-	/** Narrative summary of the role — storytelling for the site (and brand context). */
+	/** Narrative summary of the role — storytelling for the site and brand PDF. */
 	summary: string;
 	/**
 	 * Impact-oriented bullets for scannable UI + ATS / recruiter PDFs.
+	 * Brand PDF shows summary + highlights; ATS shows highlights only.
 	 * Prefer outcomes and scope; only include metrics you can stand behind.
 	 */
 	highlights: string[];

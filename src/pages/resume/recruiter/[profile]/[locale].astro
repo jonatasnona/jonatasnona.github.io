@@ -11,7 +11,7 @@ import {
 	requireResumeProfile,
 	type ResumeProfile,
 } from '../../../../resume';
-import type { Experience, SkillGroup } from '../../../../content/types';
+import type { Experience } from '../../../../content/types';
 import '../../../../styles/tokens.css';
 import '../../../../styles/typography.css';
 import '../../../../styles/palettes.css';
@@ -74,18 +74,10 @@ const keywordsHeading =
 			</section>
 
 			{
-				resume.prioritySkills.length > 0 && (
+				resume.skillsFlat.length > 0 && (
 					<section class="resume-section resume-section--avoid-break">
 						<h2>{skillsHeading}</h2>
-						<p class="resume-skills-flat">{resume.prioritySkills.join(' · ')}</p>
-						{
-							resume.skills.map((g: SkillGroup) => (
-								<p class="resume-skills-group">
-									<strong>{g.title}</strong>
-									<span> — {g.items.join(', ')}</span>
-								</p>
-							))
-						}
+						<p class="resume-skills-flat">{resume.skillsFlat.join(' · ')}</p>
 					</section>
 				)
 			}
@@ -254,22 +246,10 @@ const keywordsHeading =
 	}
 
 	.resume-skills-flat {
-		margin: 0 0 0.35rem;
+		margin: 0;
 		font-size: 0.86rem;
 		font-weight: 600;
 		color: #111;
-	}
-
-	.resume-skills-group {
-		margin: 0.2rem 0 0;
-		font-size: 0.8rem;
-		color: #333;
-	}
-
-	.resume-skills-group strong {
-		color: #111;
-		font-family: var(--font-display);
-		font-weight: 700;
 	}
 
 	.resume-job {
