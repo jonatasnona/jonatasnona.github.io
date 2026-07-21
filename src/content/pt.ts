@@ -124,6 +124,7 @@ export const pt: PortfolioContent = {
 					'Automação do provisionamento de servidores e soluções Nokia no datacenter com Packer, SSH e Ansible/Shell: reduzi o ciclo de ~168 h (~7 dias) para ~48 h (~2 dias)',
 				],
 				technologies: [
+					'Packer',
 					'Ansible',
 					'Shell Script',
 					'Linux',
