@@ -1,48 +1,9 @@
 {
 	"login": "jonatasnona",
-	"fetchedAt": "2026-10-31T21:10:16.968Z",
+	"fetchedAt": "2026-11-01T21:48:30.638Z",
 	"source": "github-graphql",
 	"totalContributions": 1919,
 	"weeks": [
-		{
-			"days": [
-				{
-					"date": "2025-10-26",
-					"count": 0,
-					"level": "NONE"
-				},
-				{
-					"date": "2025-10-27",
-					"count": 4,
-					"level": "FIRST_QUARTILE"
-				},
-				{
-					"date": "2025-10-28",
-					"count": 0,
-					"level": "NONE"
-				},
-				{
-					"date": "2025-10-29",
-					"count": 2,
-					"level": "FIRST_QUARTILE"
-				},
-				{
-					"date": "2025-10-30",
-					"count": 0,
-					"level": "NONE"
-				},
-				{
-					"date": "2025-10-31",
-					"count": 1,
-					"level": "FIRST_QUARTILE"
-				},
-				{
-					"date": "2025-11-01",
-					"count": 0,
-					"level": "NONE"
-				}
-			]
-		},
 		{
 			"days": [
 				{
@@ -2068,6 +2029,15 @@
 					"date": "2026-10-31",
 					"count": 1,
 					"level": "FIRST_QUARTILE"
+				}
+			]
+		},
+		{
+			"days": [
+				{
+					"date": "2026-11-01",
+					"count": 0,
+					"level": "NONE"
 				}
 			]
 		}
